@@ -1,11 +1,9 @@
 package ru.nsu.ccfit.tpnn.perceptron
 
-import com.github.doyaaaaaken.kotlincsv.dsl.csvReader
 import ru.nsu.ccfit.tpnn.perceptron.core.MultiLayerPerceptron
 import ru.nsu.ccfit.tpnn.perceptron.core.function.SigmoidalTransfer
 import ru.nsu.ccfit.tpnn.perceptron.core.utils.readData
 import ru.nsu.ccfit.tpnn.perceptron.core.utils.minus
-import java.io.File
 
 fun main(args: Array<String>) {
     val inputSize = 18
