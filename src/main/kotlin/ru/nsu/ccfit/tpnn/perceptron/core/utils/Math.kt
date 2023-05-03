@@ -12,3 +12,17 @@ operator fun Array<Double>.minus(targets: Array<Double?>): Array<Double?> {
     }
     return result
 }
+
+fun calculateMiddle(arr: Array<Double?>): Double? {
+    var sum: Double = 0.0
+    var count: Int = 0
+
+    for (element in arr) {
+        if (element != null) {
+            sum += element
+            count++
+        }
+    }
+
+    return if (count > 0) sum / count else null
+}
