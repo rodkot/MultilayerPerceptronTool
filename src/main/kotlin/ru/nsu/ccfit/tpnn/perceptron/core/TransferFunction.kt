@@ -1,18 +1,9 @@
 package ru.nsu.ccfit.tpnn.perceptron.core
 
 interface TransferFunction {
-    /**
-     * Funzione di trasferimento
-     * @param value Valore in input
-     * @return Valore funzione
-     */
+    //function activation
     fun evalute(value: Double): Double
 
-
-    /**
-     * Funzione derivata
-     * @param value Valore in input
-     * @return Valore funzione derivata
-     */
+    //Derived function
     fun evaluteDerivate(value: Double): Double
 }

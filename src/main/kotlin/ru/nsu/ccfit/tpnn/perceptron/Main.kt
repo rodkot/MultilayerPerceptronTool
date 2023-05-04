@@ -11,6 +11,7 @@ import org.jfree.chart.JFreeChart
 import org.jfree.chart.plot.PlotOrientation
 import org.jfree.data.category.DefaultCategoryDataset
 import ru.nsu.ccfit.tpnn.perceptron.core.utils.calculateMiddle
+import ru.nsu.ccfit.tpnn.perceptron.core.utils.mse
 import javax.swing.JFrame
 
 fun main(args: Array<String>) {
@@ -18,10 +19,10 @@ fun main(args: Array<String>) {
     val outputSize = 2
     // Train MLP on loaded data
     val learningRate = 0.03
-    val epochs = 29500
+    val epochs = 20000
     val weightsLimit = -1.9 to 1.9;
     val biasLimit = -0.5 to 0.5;
-    val layers = intArrayOf(18, 70, 63, 2)
+    val layers = intArrayOf(18, 50, 50, 2)
 
     val dataTrain = readData(
         inputSize,
@@ -55,12 +56,23 @@ fun main(args: Array<String>) {
 
     println("Learning completed!")
 
-    /* Test */
-    for ((inputs, targets) in dataTest) {
-        val values = net.execute(inputs)
 
-        println("Error at step is ${(values - targets).map { it.toString() }}")
+    /* Test */
+    val testResult = mutableListOf<Array<Double>>()
+    val test = mutableListOf<Array<Double?>>()
+    val error = mutableListOf<Array<Double?>>()
+    for ((inputs, targets) in dataTest) {
+        val d = net.execute(inputs)
+        val t = targets
+        testResult +=  d
+        test += t
+        error += (d-t)
     }
+    plot("test G_toal",error.map { it[0] }.toTypedArray())
+    plot("test КГФ",error.map { it[1] }.toTypedArray())
+
+    println("G_total mse: ${mse(test.map { it[0] }.toTypedArray(), testResult.map { it[0] }.toTypedArray())}")
+    println("КГФ mse: ${mse(test.map { it[1] }.toTypedArray(), testResult.map { it[1] }.toTypedArray())}")
 
 }
 
@@ -97,7 +109,7 @@ fun plot(nameTarget: String, errors: Array<Double?>) {
     val chartPanel = ChartPanel(chart)
 
     // Create a frame to display the panel
-    val frame = JFrame("My Frame")
+    val frame = JFrame("My $nameTarget")
     frame.defaultCloseOperation = JFrame.EXIT_ON_CLOSE
     frame.contentPane.add(chartPanel)
     frame.pack()

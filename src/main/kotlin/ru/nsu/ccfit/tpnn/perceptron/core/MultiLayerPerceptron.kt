@@ -84,7 +84,6 @@ class MultiLayerPerceptron(
         var k: Int = layers.size - 2
         while (k >= 0) {
 
-            // Calcolo l'errore dello strato corrente e ricalcolo i delta
             i = 0
             while (i < layers[k].length) {
                 error = 0.0
@@ -98,7 +97,6 @@ class MultiLayerPerceptron(
                 i++
             }
 
-            // Aggiorno i pesi dello strato successivo
             i = 0
             while (i < layers[k + 1].length) {
                 j = 0

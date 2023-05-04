@@ -26,3 +26,18 @@ fun calculateMiddle(arr: Array<Double?>): Double? {
 
     return if (count > 0) sum / count else null
 }
+
+fun mse(test: Array<Double?>, result: Array<Double?>): Double {
+    require(test.size == result.size) { "Input arrays must have the same size" }
+    var sum = 0.0
+    var count = 0
+    for (i in test.indices) {
+        val ti = test[i]
+        val ri = result[i]
+        if (ti != null && ri != null) {
+            sum += (ti - ri) * (ti - ri)
+            count++
+        }
+    }
+    return if (count > 0) sum / count else 0.0
+}
