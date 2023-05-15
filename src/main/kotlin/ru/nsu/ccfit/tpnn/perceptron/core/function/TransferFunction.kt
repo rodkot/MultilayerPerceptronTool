@@ -1,4 +1,4 @@
-package ru.nsu.ccfit.tpnn.perceptron.core
+package ru.nsu.ccfit.tpnn.perceptron.core.function
 
 interface TransferFunction {
     //function activation

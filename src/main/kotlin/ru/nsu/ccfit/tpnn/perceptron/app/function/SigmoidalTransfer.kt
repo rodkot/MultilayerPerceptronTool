@@ -1,6 +1,6 @@
-package ru.nsu.ccfit.tpnn.perceptron.core.function
+package ru.nsu.ccfit.tpnn.perceptron.app.function
 
-import ru.nsu.ccfit.tpnn.perceptron.core.TransferFunction
+import ru.nsu.ccfit.tpnn.perceptron.core.function.TransferFunction
 import kotlin.math.pow
 
 
